@@ -1,0 +1,32 @@
+.item {
+  border-bottom: 1px solid #e5e7eb;
+  padding: 5px 15px;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}
+.item:hover {
+  border-radius: 5px;
+  background-color: #00bcd4;
+  cursor: pointer;
+}
+.item__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.item__textWrapper {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.item__text {
+  font-size: 17px;
+  margin-bottom: 6px;
+}
+.item__actionIcons {
+  display: flex;
+  gap: 10px;
+}
+.item_actionIcon {
+  color: #000;
+}
