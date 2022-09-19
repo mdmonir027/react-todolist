@@ -4,13 +4,7 @@ import Form from './Form';
 import List from './List';
 
 const Content = () => {
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      text: 'Learn Modern ES6+ JavaScript',
-      isCompleted: false,
-    },
-  ]);
+  const [todos, setTodos] = useState([]);
 
   return (
     <div className='content'>

@@ -5,6 +5,7 @@ import './List.css';
 const List = ({ todos, setTodos }) => {
   return (
     <div className='list'>
+      {todos.length === 0 && 'No todo found'}
       {todos.map((todo) => (
         <Item
           text={todo.text}
