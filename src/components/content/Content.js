@@ -17,7 +17,7 @@ const Content = () => {
       <div className='container'>
         <div className='content__wrapper'>
           <Form todos={todos} setTodos={setTodos} />
-          <List todos={todos} />
+          <List todos={todos} setTodos={setTodos} />
         </div>
       </div>
     </div>
