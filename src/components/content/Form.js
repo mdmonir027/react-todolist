@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaAddressBook, FaPlus } from 'react-icons/fa';
+import { v4 as uuid4 } from 'uuid';
 import './Form.css';
 const Form = ({ setTodos, todos }) => {
   const [todoText, setTodoText] = useState('');
@@ -11,7 +12,7 @@ const Form = ({ setTodos, todos }) => {
   const clickHandler = () => {
     console.log(todoText);
     const todoObject = {
-      id: Math.ceil(Math.random() * 1000),
+      id: uuid4(),
       text: todoText,
       isCompleted: false,
     };
