@@ -7,6 +7,7 @@ const App = () => {
     <div>
       <Header />
       <Content />
+      {/* <Basic todo={[{ id: 1 }, { id: 2 }]} /> */}
     </div>
   );
 };
