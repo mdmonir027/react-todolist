@@ -1,28 +1,24 @@
 import React, { useState } from 'react';
 import { FaAddressBook, FaPlus } from 'react-icons/fa';
-import { v4 as uuid4 } from 'uuid';
 import './Form.css';
-const Form = ({ setTodos, todos }) => {
-  const [todoText, setTodoText] = useState('');
+const Form = ({ addTodo }) => {
+  const [text, setText] = useState('');
+  const [error, setError] = useState('');
 
-  const changeHandler = (e) => {
-    setTodoText(e.target.value);
-  };
-
-  const clickHandler = () => {
-    console.log(todoText);
-    const todoObject = {
-      id: uuid4(),
-      text: todoText,
-      isCompleted: false,
-    };
-    setTodos([...todos, todoObject]);
-    setTodoText('');
+  const clickHandler = (e) => {
+    e.preventDefault();
+    if (!text) {
+      setError('Text field can not be empty!');
+    } else {
+      addTodo(text);
+      setText('');
+      setError('');
+    }
   };
 
   return (
-    <div className='form'>
-      <div>
+    <form onSubmit={clickHandler}>
+      <div className='form'>
         <div className='form__wrapper'>
           <FaAddressBook className='form__left' />
 
@@ -30,14 +26,15 @@ const Form = ({ setTodos, todos }) => {
             type='text'
             className='form__center'
             placeholder='Type your todo'
-            value={todoText}
-            onChange={changeHandler}
+            value={text}
+            onChange={(e) => setText(e.target.value)}
           />
 
           <FaPlus className='form__right' onClick={clickHandler} />
         </div>
       </div>
-    </div>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+    </form>
   );
 };
 

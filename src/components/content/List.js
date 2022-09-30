@@ -2,7 +2,8 @@ import React from 'react';
 import Item from './Item';
 import './List.css';
 
-const List = ({ todos, setTodos }) => {
+const List = (props) => {
+  const { todos, deleteHandler, completeHandler, updateHandler } = props;
   return (
     <div className='list'>
       {todos.length === 0 && 'No todo found'}
@@ -12,8 +13,9 @@ const List = ({ todos, setTodos }) => {
           key={todo.id}
           id={todo.id}
           isCompleted={todo.isCompleted}
-          todos={todos}
-          setTodos={setTodos}
+          deleteHandler={deleteHandler}
+          completeHandler={completeHandler}
+          updateHandler={updateHandler}
         />
       ))}
     </div>

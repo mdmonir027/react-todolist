@@ -1,46 +1,49 @@
 import React, { useState } from 'react';
-import { FaPen, FaTrash } from 'react-icons/fa';
+import { FaCheckCircle, FaPen, FaRegCircle, FaTrash } from 'react-icons/fa';
 import EditInput from './EditInput';
 import './Item.css';
-const Item = ({ text, id, todos, setTodos }) => {
+const Item = (props) => {
+  const {
+    text,
+    id,
+    isCompleted,
+    deleteHandler,
+    completeHandler,
+    updateHandler,
+  } = props;
   const [isShow, setIsShow] = useState(false);
-
-  const deleteHandler = () => {
-    const filteredTodos = todos.filter((todo) => {
-      if (todo.id === id) return false;
-      return true;
-    });
-    setTodos(filteredTodos);
-  };
-
-  const showEditFormHandler = () => {
-    setIsShow(true);
-  };
 
   return (
     <div className='item'>
       {isShow === true ? (
         <EditInput
           text={text}
-          //   setIsShow={setIsShow}
-          setTodos={setTodos}
-          todos={todos}
+          setIsShow={setIsShow}
           id={id}
+          updateHandler={updateHandler}
         />
       ) : (
         <div className='item__wrapper'>
           <div className='item__textWrapper'>
-            {/* <div>
-                   <FaRegCircle />
-                 </div> */}
-            <p className='item__text'>{text}</p>
+            <div onClick={() => completeHandler(id)}>
+              {isCompleted ? <FaCheckCircle /> : <FaRegCircle />}
+            </div>
+            <p
+              className='item__text'
+              style={{ textDecoration: isCompleted ? 'line-through' : 'none' }}
+            >
+              {text}
+            </p>
           </div>
           <div className='item__action'>
             <div className='item__actionIcons'>
-              <FaTrash className='item_actionIcon' onClick={deleteHandler} />
+              <FaTrash
+                className='item_actionIcon'
+                onClick={() => deleteHandler(id)}
+              />
               <FaPen
                 className='item_actionIcon'
-                onClick={showEditFormHandler}
+                onClick={() => setIsShow(true)}
               />
             </div>
           </div>
@@ -49,7 +52,5 @@ const Item = ({ text, id, todos, setTodos }) => {
     </div>
   );
 };
-
-// ternery operator
 
 export default Item;
